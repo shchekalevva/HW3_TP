@@ -10,6 +10,13 @@ elif [ "$COMMAND" == "build_generator" ]; then
 elif [ "$COMMAND" == "run_generator" ]; then
     echo "Запуск генератора"
     docker run --rm -v ./data:/data my_generator
+elif [ "$COMMAND" == "build_reporter" ]; then
+    echo "Сборка образа аналитика"
+    docker build -f Dockerfile.reporter -t my_reporter .
+
+elif [ "$COMMAND" == "run_reporter" ]; then
+    echo "Запуск аналитика"
+    docker run --rm -v ./data:/data my_reporter
 else
     echo "Неизвестная команда '$COMMAND'./run.sh create_local_data\nДоступные команды: create_local_data"
     exit 1
